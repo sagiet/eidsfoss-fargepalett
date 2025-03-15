@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eidsfoss Marked - Historiske Farger</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #F7F4E9;
+            /* Mellom hvit og benhvit */
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .color-section {
+            margin-bottom: 40px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #A63C32;
+            /* Engelsk rød */
+            border-bottom: 3px solid #6E4E37;
+            /* Umbra/brun */
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #384B77;
+            /* Indigo */
+            margin-top: 30px;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .color-box {
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            transform-origin: center;
+            position: relative;
+        }
+
+        .color-box:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .color-name {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .color-code {
+            font-family: monospace;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .color-box:hover .color-name {
+            font-size: 1.2em;
+        }
+
+        .color-box:hover .color-code {
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        /* Hovedpalett */
+        .engelsk-rod {
+            background-color: #A63C32;
+        }
+
+        .benhvit {
+            background-color: #F1ECD7;
+            color: #2E2E2E;
+            /* Mørk tekst på lys bakgrunn */
+        }
+
+        .umbra {
+            background-color: #6E4E37;
+        }
+
+        .jernoksidsvart {
+            background-color: #2E2E2E;
+        }
+
+        .oker {
+            background-color: #C19A49;
+        }
+
+        .gronn-jord {
+            background-color: #667C5D;
+        }
+
+        .falmrod {
+            background-color: #BC6C64;
+        }
+
+        .indigo {
+            background-color: #384B77;
+        }
+
+        .krapprod {
+            background-color: #9B2F35;
+        }
+
+        .brent-sienna {
+            background-color: #8E4E32;
+        }
+
+        .koboltbla {
+            background-color: #2B547E;
+        }
+
+        .proyserblaa {
+            background-color: #003366;
+        }
+
+        /* Demo-seksjoner */
+        .demo-content {
+            margin: 30px 0;
+            padding: 20px;
+            background: #C19A49; /* Oker */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .demo-content h2 {
+            color: #F1ECD7; /* Benhvit */
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .demo-nav {
+            background: #C19A49; /* Oker */
+            padding: 15px 0;
+            margin-bottom: 30px;
+            border-radius: 12px;
+        }
+
+        .demo-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .demo-nav a {
+            color: #9B2F35; /* Krapprød */
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .demo-nav a:hover {
+            background: #F1ECD7; /* Benhvit */
+            color: #9B2F35; /* Krapprød */
+        }
+
+        .demo-page {
+            background: #F1ECD7; /* Benhvit */
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .demo-page h1 {
+            color: #A63C32; /* Engelsk rød */
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .demo-page p {
+            color: #2E2E2E; /* Jernoksidsvart */
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .demo-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .demo-section.featured {
+            background: #384B77; /* Indigo */
+            color: #F1ECD7; /* Benhvit */
+            text-align: center;
+            padding: 40px 25px;
+        }
+
+        .demo-section.featured h3 {
+            color: #C19A49; /* Oker */
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .demo-section.featured p {
+            color: #F1ECD7; /* Benhvit */
+            font-size: 1.2em;
+            margin-bottom: 0;
+        }
+
+        .demo-section.info {
+            background: #BC6C64; /* Falmrød */
+            color: white;
+        }
+
+        .demo-section.info h3 {
+            color: #F1ECD7; /* Benhvit */
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .demo-section.info p {
+            color: white;
+            font-size: 1.1em;
+        }
+
+        .bullet {
+            color: #C19A49; /* Oker */
+            margin: 0 10px;
+        }
+
+        .demo-activities {
+            background: #667C5D; /* Grønn jord */
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .demo-activities ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .demo-activities li {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .demo-activities li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #C19A49; /* Oker */
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .demo-button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .demo-button.primary {
+            background: #A63C32; /* Engelsk rød */
+            color: white;
+        }
+
+        .demo-button.secondary {
+            background: #384B77; /* Indigo */
+            color: white;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .demo-footer {
+            background: #6E4E37; /* Umbra */
+            color: #F1ECD7; /* Benhvit */
+            text-align: center;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+            margin-top: 30px;
+        }
+
+        .demo-info {
+            background-color: #384B77;
+            color: #F1ECD7;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .demo-accent {
+            background-color: #667C5D;
+            color: #F1ECD7;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .button-container {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #F1ECD7;
+            font-size: 1em;
+        }
+
+        .btn-primary {
+            background-color: #6E4E37;
+        }
+
+        .btn-cta {
+            background-color: #9B2F35;
+            font-size: 1.1em;
+            padding: 12px 24px;
+        }
+
+        .historical-note {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #A63C32;
+        }
+
+        /* Legg til stil for tooltip */
+        .color-history {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            color: #2E2E2E;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 250px;
+            font-size: 0.9em;
+            line-height: 1.4;
+            text-align: left;
+            z-index: 100;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .color-box:hover .color-history {
+            display: block;
+        }
+
+        .color-history::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+        }
+
+        /* Bildegalleri-stil */
+        .gallery-section {
+            margin: 40px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .gallery-container {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .gallery {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .gallery-item.active {
+            opacity: 1;
+        }
+
+        .gallery-item img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 2;
+        }
+
+        .nav-button {
+            background: rgba(46, 46, 46, 0.8);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: rgba(46, 46, 46, 1);
+            transform: scale(1.1);
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #2E2E2E;
+            transform: scale(1.2);
+        }
+
+        .demo-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .demo-section h3 {
+            color: #9B2F35; /* Krapprød */
+            margin-bottom: 15px;
+        }
+
+        .demo-section p {
+            color: #2E2E2E;
+            margin-bottom: 15px;
+        }
+
+        .demo-activities {
+            background: #667C5D; /* Grønn jord */
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .demo-activities ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .demo-activities li {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .demo-activities li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #C19A49; /* Oker */
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .demo-button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .demo-button.primary {
+            background: #A63C32; /* Engelsk rød */
+            color: white;
+        }
+
+        .demo-button.secondary {
+            background: #384B77; /* Indigo */
+            color: white;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Eidsfoss Marked - Historiske Farger</h1>
+
+        <div class="historical-note">
+            <h2>Om Fargepaletten</h2>
+            <p>Denne fargepaletten er basert på historiske pigmenter fra 1600-1700-tallets Norge.
+                Fargene representerer de faktiske fargene som var tilgjengelige og i bruk i denne perioden,
+                og gir derfor en autentisk historisk profil for Eidsfoss Marked.</p>
+        </div>
+
+        <div class="color-section">
+            <h2>Historisk Fargepalett fra 1600-1700-tallet</h2>
+            <div class="color-grid">
+                <div class="color-box engelsk-rod">
+                    <div class="color-history">
+                        Engelsk rød var en av de mest karakteristiske fargene i norsk byggetradisjon. Dette
+                        jernoksidpigmentet ga den velkjente rødfargen til mange norske hus og låver. På 1600-tallet ble
+                        den importert fra England, derav navnet.
+                    </div>
+                    <div class="color-name">Engelsk rød</div>
+                    <div class="color-code">#A63C32</div>
+                </div>
+                <div class="color-box benhvit">
+                    <div class="color-history">
+                        Benhvit var en eksklusiv farge på 1700-tallet, fremstilt av brente bein. Den ble særlig brukt i
+                        finere interiører og på møbler. Fargen var populær i rokokkostilen og symboliserte ofte velstand
+                        og raffinement.
+                    </div>
+                    <div class="color-name">Benhvit</div>
+                    <div class="color-code">#F1ECD7</div>
+                </div>
+                <div class="color-box umbra">
+                    <div class="color-history">
+                        Umbra var et naturlig jordpigment som ble mye brukt på 1600-tallet. Den mørke, varme brunfargen
+                        ble ofte brukt på treverk og i dekorative detaljer. Pigmentet kom opprinnelig fra Umbria i
+                        Italia.
+                    </div>
+                    <div class="color-name">Umbra/brun</div>
+                    <div class="color-code">#6E4E37</div>
+                </div>
+                <div class="color-box jernoksidsvart">
+                    <div class="color-history">
+                        Jernoksidsvart var et robust pigment som ble brukt siden middelalderen. På 1600-tallet var det
+                        særlig populært i dekorative elementer og som konturfarger. Det var også en viktig farge i
+                        kalkmalerier.
+                    </div>
+                    <div class="color-name">Jernoksidsvart</div>
+                    <div class="color-code">#2E2E2E</div>
+                </div>
+                <div class="color-box oker">
+                    <div class="color-history">
+                        Oker var en av de mest brukte pigmentene i Norge på 1600-tallet. Den ble utvunnet fra naturlig
+                        jordpigment og var populær for sin varme, gylne tone. Fargen ble ofte brukt i dekorative
+                        elementer i kirker og velstående hjem.
+                    </div>
+                    <div class="color-name">Oker/gul</div>
+                    <div class="color-code">#C19A49</div>
+                </div>
+                <div class="color-box falmrod">
+                    <div class="color-history">
+                        Falmrød var en nyanse som oppsto når engelsk rød ble blandet med hvitt. Denne fargen var særlig
+                        populær i interiører på 1700-tallet og ble ofte brukt på møbler og innvendige vegger.
+                    </div>
+                    <div class="color-name">Falmrød</div>
+                    <div class="color-code">#BC6C64</div>
+                </div>
+                <div class="color-box gronn-jord">
+                    <div class="color-history">
+                        Grønn jord var et naturpigment som ble brukt siden middelalderen. Den ble utvunnet fra mineralet
+                        glaukonitt og var populær i landskapsmalerier og som bunnfarge i dekorasjoner.
+                    </div>
+                    <div class="color-name">Grønn jord</div>
+                    <div class="color-code">#667C5D</div>
+                </div>
+                <div class="color-box indigo">
+                    <div class="color-history">
+                        Indigo var en kostbar importvare på 1600-tallet, utvunnet fra indigoplanten. Den ble høyt
+                        verdsatt for sin dype blåfarge og var et statussymbol i tekstiler og kunst.
+                    </div>
+                    <div class="color-name">Indigo</div>
+                    <div class="color-code">#384B77</div>
+                </div>
+                <div class="color-box krapprod">
+                    <div class="color-history">
+                        Krapprød ble utvunnet fra røttene til krapplanten. Dette var en av de mest verdifulle røde
+                        pigmentene på 1700-tallet og ble brukt i fine tekstiler og kunstmaling.
+                    </div>
+                    <div class="color-name">Krapprød</div>
+                    <div class="color-code">#9B2F35</div>
+                </div>
+                <div class="color-box brent-sienna">
+                    <div class="color-history">
+                        Brent sienna var et jordpigment som ble "brent" for å oppnå en dypere rødbrun farge. Den var mye
+                        brukt i arkitektoniske detaljer og møbler på 1600-tallet.
+                    </div>
+                    <div class="color-name">Brent sienna</div>
+                    <div class="color-code">#8E4E32</div>
+                </div>
+                <div class="color-box koboltbla">
+                    <div class="color-history">
+                        Koboltblå ble først populær på slutten av 1700-tallet. Dette var et kostbart pigment som ble
+                        høyt verdsatt for sin rene, klare blåfarge i både kunst og dekorasjon.
+                    </div>
+                    <div class="color-name">Koboltblå</div>
+                    <div class="color-code">#2B547E</div>
+                </div>
+                <div class="color-box proyserblaa">
+                    <div class="color-history">
+                        Prøyserblå var det første moderne, syntetiske pigmentet, oppdaget ved en tilfeldighet i Berlin
+                        rundt 1706. Den ble raskt populær på grunn av sin intense blåfarge og rimelige pris.
+                    </div>
+                    <div class="color-name">Prøyserblå</div>
+                    <div class="color-code">#003366</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-content">
+            <h2>Eksempel på Webside med Historiske Farger</h2>
+            
+            <div class="demo-page">
+                <h1>Velkommen til Eidsfoss Marked</h1>
+                
+                <div class="demo-nav">
+                    <ul>
+                        <li><a href="#">Hjem</a></li>
+                        <li><a href="#">Om Oss</a></li>
+                        <li><a href="#">Program</a></li>
+                        <li><a href="#">Utstillere</a></li>
+                        <li><a href="#">Kontakt</a></li>
+                    </ul>
+                </div>
+
+                <div class="demo-section featured">
+                    <h3>Eidsfoss Marked 2025</h3>
+                    <p>19-21. juli <span class="bullet">•</span> Kunst og håndverk i historiske omgivelser</p>
+                </div>
+
+                <div class="demo-section info">
+                    <h3>Praktisk Informasjon</h3>
+                    <p>Åpningstider: 10:00 - 17:00 alle dager</p>
+                </div>
+
+                <div class="demo-activities">
+                    <h3>Aktiviteter</h3>
+                    <ul>
+                        <li>Håndverksdemonstrasjon</li>
+                        <li>Historiske omvisninger</li>
+                        <li>Kunstutstillinger</li>
+                        <li>Matboder med lokale spesialiteter</li>
+                    </ul>
+                </div>
+
+                <div class="demo-buttons">
+                    <button class="demo-button primary">Les mer</button>
+                    <button class="demo-button secondary">Meld deg på som utstiller</button>
+                </div>
+
+                <div class="demo-footer">
+                    <p>Eidsfoss Marked 2025 • 19-21. juli • Kunst og håndverk i historiske omgivelser</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-section">
+            <h2>Eksempler på bruk av fargene kombinasjoner</h2>
+            <div class="gallery-container">
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151608.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151619.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151630.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151637.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151648.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151656.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151706.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151716.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151725.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151735.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151743.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151752.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151801.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151812.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151822.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151832.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151840.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151847.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151858.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151905.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151913.png" alt="Fargeeksempel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="fargeeks/Skjermbilde 2025-03-15 151919.png" alt="Fargeeksempel">
+                    </div>
+                </div>
+                <div class="gallery-nav">
+                    <button class="nav-button prev">←</button>
+                    <button class="nav-button next">→</button>
+                </div>
+                <div class="gallery-dots"></div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const items = document.querySelectorAll('.gallery-item');
+                const prevBtn = document.querySelector('.prev');
+                const nextBtn = document.querySelector('.next');
+                const dotsContainer = document.querySelector('.gallery-dots');
+
+                let currentIndex = 0;
+                const totalItems = items.length;
+
+                // Opprett prikkene
+                items.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if (index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => goToSlide(index));
+                    dotsContainer.appendChild(dot);
+                });
+
+                const dots = document.querySelectorAll('.dot');
+
+                // Sett første bilde som aktivt
+                items[0].classList.add('active');
+
+                function updateDots() {
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentIndex);
+                    });
+                }
+
+                function goToSlide(index) {
+                    // Fjern active class fra nåværende bilde
+                    items[currentIndex].classList.remove('active');
+
+                    currentIndex = index;
+
+                    // Legg til active class på nytt bilde
+                    items[currentIndex].classList.add('active');
+
+                    updateDots();
+                }
+
+                prevBtn.addEventListener('click', () => {
+                    goToSlide((currentIndex - 1 + totalItems) % totalItems);
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    goToSlide((currentIndex + 1) % totalItems);
+                });
+            });
+        </script>
+    </div>
+</body>
+
+</html>
