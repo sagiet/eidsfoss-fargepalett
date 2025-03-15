@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eidsfoss Marked - Historiske Farger</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #F1ECD7; /* Benhvit */
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .color-section {
+            margin-bottom: 40px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #A63C32; /* Engelsk rød */
+            border-bottom: 3px solid #6E4E37; /* Umbra/brun */
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #384B77; /* Indigo */
+            margin-top: 30px;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .color-box {
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .color-name {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .color-code {
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        /* Hovedpalett */
+        .engelsk-rod { background-color: #A63C32; }
+        .benhvit { 
+            background-color: #F1ECD7; 
+            color: #2E2E2E;
+            border: 1px solid #ddd;
+        }
+        .umbra { background-color: #6E4E37; }
+        .jernoksidsvart { background-color: #2E2E2E; }
+
+        /* Historisk palett */
+        .indigo { background-color: #384B77; }
+        .krapprod { background-color: #9B2F35; }
+        .oker { background-color: #C19A49; }
+        .gronn-jord { background-color: #667C5D; }
+        .falmrod { background-color: #BC6C64; }
+
+        /* Demo-seksjoner */
+        .demo-header {
+            background-color: #A63C32;
+            color: #F1ECD7;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .demo-info {
+            background-color: #384B77;
+            color: #F1ECD7;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .demo-accent {
+            background-color: #667C5D;
+            color: #F1ECD7;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .button-container {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #F1ECD7;
+            font-size: 1em;
+        }
+
+        .btn-primary {
+            background-color: #6E4E37;
+        }
+
+        .btn-cta {
+            background-color: #9B2F35;
+            font-size: 1.1em;
+            padding: 12px 24px;
+        }
+
+        .historical-note {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #A63C32;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Eidsfoss Marked - Historiske Farger</h1>
+        
+        <div class="historical-note">
+            <h2>Om Fargepaletten</h2>
+            <p>Denne fargepaletten er basert på historiske pigmenter fra 1600-1700-tallets Norge. 
+            Fargene representerer de faktiske fargene som var tilgjengelige og i bruk i denne perioden, 
+            og gir derfor en autentisk historisk profil for Eidsfoss Marked.</p>
+        </div>
+
+        <div class="color-section">
+            <h2>Hovedpalett</h2>
+            <div class="color-grid">
+                <div class="color-box engelsk-rod">
+                    <div class="color-name">Engelsk rød</div>
+                    <div class="color-code">#A63C32</div>
+                </div>
+                <div class="color-box benhvit">
+                    <div class="color-name">Benhvit</div>
+                    <div class="color-code">#F1ECD7</div>
+                </div>
+                <div class="color-box umbra">
+                    <div class="color-name">Umbra/brun</div>
+                    <div class="color-code">#6E4E37</div>
+                </div>
+                <div class="color-box jernoksidsvart">
+                    <div class="color-name">Jernoksidsvart</div>
+                    <div class="color-code">#2E2E2E</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="color-section">
+            <h2>Historisk Palett</h2>
+            <div class="color-grid">
+                <div class="color-box indigo">
+                    <div class="color-name">Indigo</div>
+                    <div class="color-code">#384B77</div>
+                </div>
+                <div class="color-box krapprod">
+                    <div class="color-name">Krapprød</div>
+                    <div class="color-code">#9B2F35</div>
+                </div>
+                <div class="color-box gronn-jord">
+                    <div class="color-name">Grønn jord</div>
+                    <div class="color-code">#667C5D</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="color-section">
+            <h2>Eksempler på Bruk</h2>
+            
+            <div class="demo-header">
+                <h3>Eidsfoss Marked 2025</h3>
+                <p>19-21. juli • Kunst og håndverk i historiske omgivelser</p>
+            </div>
+
+            <div class="demo-info">
+                <h3>Praktisk Informasjon</h3>
+                <p>Åpningstider: 10:00 - 17:00 alle dager</p>
+            </div>
+
+            <div class="demo-accent">
+                <h3>Aktiviteter</h3>
+                <p>Håndverksdemonstrasjon • Historiske omvisninger • Kunstutstillinger</p>
+            </div>
+
+            <div class="button-container">
+                <button class="btn btn-primary">Les mer</button>
+                <button class="btn btn-cta">Meld deg på som utstiller</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
